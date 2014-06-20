@@ -1,0 +1,26 @@
+{
+  "name": "ng-contextmenu",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ds82/mailadm",
+  "description": "A contextmenu for angular based apps",
+  "main": "contextmenu.js",
+  "keywords": [
+    "angular",
+    "ng",
+    "contextmenu",
+    "context",
+    "menu"
+  ],
+  "authors": [
+    "Dennis Sänger <code14@mail.ds82.de>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/thirdparty",
+    "test",
+    "tests"
+  ]
+}
