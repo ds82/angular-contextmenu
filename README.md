@@ -11,6 +11,10 @@ contextmenu's menu on various elements (e.g. tables).
 
 ![](screen.png)
 
+## Why?
+
+Yes, there are already a few angular modules which add contextmenu similar to this. *But* competition isn't a bad thing right? Furthermore most of the existing modules that do similar things use isolated scopes in their directive's. My module works without an isolated scope.
+
 ## How to use
 
  * get the contextmenu.js file
