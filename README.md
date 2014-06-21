@@ -17,8 +17,8 @@ Yes, there are already a few angular modules which add contextmenu similar to th
 
 ## How to use
 
- * get the contextmenu.js file
- * make it available in your code
+ * get the contextmenu.(js|css) files
+ * make them available on your page
  * make angular load the module:
 ```js
 var app = angular.module('app', [
