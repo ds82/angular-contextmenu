@@ -2,9 +2,8 @@
   position: fixed;
   display: block;
   z-index: 5000;
-
-  li>a:hover {
-    background-color: @btn-primary-bg;
-    color: @btn-primary-color;
-  }
+}
+.contextmenu li > a:hover {
+  background-color: #428bca;
+  color: #ffffff;
 }
