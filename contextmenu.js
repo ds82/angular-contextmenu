@@ -55,9 +55,9 @@ app.directive('contextmenuContainer', ['$parse', function( $parse ) {
     controller: ['$scope', '$attrs', function( $scope, $attrs ) {
       return $parse( $attrs.contextmenuContainer )( $scope );
     }],
-    link: function( $scope, $element, $attrs ) {
-      
-    }
+//    link: function( $scope, $element, $attrs ) {
+//      
+//    }
   }
 }]);
 

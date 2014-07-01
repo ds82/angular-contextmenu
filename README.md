@@ -13,7 +13,7 @@ contextmenu's menu on various elements (e.g. tables).
 
 ## Why?
 
-Yes, there are already a few angular modules which add contextmenu similar to this. *But* competition isn't a bad thing right? Furthermore most of the existing modules that do similar things use isolated scopes in their directive's. My module works without an isolated scope.
+Yes, there are already a few angular modules which add contextmenu similar to this. *But* competition isn't a bad thing right? Furthermore most of the existing modules that do similar things use isolated scopes in their directive's. My module works without an isolated scope. Not using an isolated scope is no killer feature, but it helps to keep the memory usage small.
 
 ## How to use
 
