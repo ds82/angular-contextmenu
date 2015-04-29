@@ -1,0 +1,26 @@
+{
+  "curly": true,
+  "indent": true,
+  "quotmark": "single",
+  "maxparams": 4,
+  "maxdepth": 3,
+  "maxstatements": 20,
+  "maxlen": 120,
+  "curly": true,
+  "indent": true,
+
+  "undef": true,
+  "unused": true,
+  "globals": {
+  },
+  "predef": [
+    "window",
+    "define",
+    "document",
+    "console",
+    "angular"
+  ],
+  "node": true,
+  "globalstrict": true
+}
+
