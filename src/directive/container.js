@@ -17,5 +17,9 @@ function Container() {
 ContainerCtrl.$inject = ['$scope'];
 function ContainerCtrl($scope) {
   var pub = this;
-  pub.contextmenu = $scope.contextmenu;
+  pub.get = get;
+
+  function get() {
+    return $scope.contextmenu;
+  }
 }

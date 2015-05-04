@@ -3,9 +3,13 @@
 angular.module('io.dennis.contextmenu')
     .directive('contextmenu', Contextmenu);
 
-Contextmenu.$inject = ['$window', '$rootScope'];
+Contextmenu.$inject = [
+  '$window',
+  '$rootScope',
+  'ContextmenuService'
+];
 
-function Contextmenu($window, $rootScope) {
+function Contextmenu($window, $rootScope, $contextmenu) {
 
   var $body = angular.element('body');
   var $windowElement = angular.element($window);
@@ -28,8 +32,8 @@ function Contextmenu($window, $rootScope) {
   }
 
   function link(scope, element, attrs, ctrl) {
+    scope.contextmenu = $contextmenu;
     scope.contextmenu.setMenu(ctrl);
-    console.log('ctrl', ctrl);
     ctrl.setElement(element);
   }
 }

@@ -18,7 +18,11 @@ function Container() {
 ContainerCtrl.$inject = ['$scope'];
 function ContainerCtrl($scope) {
   var pub = this;
-  pub.contextmenu = $scope.contextmenu;
+  pub.get = get;
+
+  function get() {
+    return $scope.contextmenu;
+  }
 }
 
 },{}],2:[function(require,module,exports){
@@ -27,9 +31,13 @@ function ContainerCtrl($scope) {
 angular.module('io.dennis.contextmenu')
     .directive('contextmenu', Contextmenu);
 
-Contextmenu.$inject = ['$window', '$rootScope'];
+Contextmenu.$inject = [
+  '$window',
+  '$rootScope',
+  'ContextmenuService'
+];
 
-function Contextmenu($window, $rootScope) {
+function Contextmenu($window, $rootScope, $contextmenu) {
 
   var $body = angular.element('body');
   var $windowElement = angular.element($window);
@@ -52,8 +60,8 @@ function Contextmenu($window, $rootScope) {
   }
 
   function link(scope, element, attrs, ctrl) {
+    scope.contextmenu = $contextmenu;
     scope.contextmenu.setMenu(ctrl);
-    console.log('ctrl', ctrl);
     ctrl.setElement(element);
   }
 }
@@ -126,7 +134,7 @@ function Item() {
 
       ev.preventDefault();
       scope.$apply(function() {
-        ctrl.contextmenu.open(iam, ev.clientX, ev.clientY);
+        ctrl.get().open(iam, ev.clientX, ev.clientY);
       });
       return false;
     });
@@ -139,7 +147,7 @@ function Item() {
       ev.preventDefault();
 
       scope.$apply(function() {
-        ctrl.contextmenu.toggle(iam, multi);
+        ctrl.get().toggle(iam, multi);
       });
     });
 
@@ -150,7 +158,7 @@ function Item() {
 
       ev.preventDefault();
       scope.$apply(function() {
-        ctrl.contextmenu.open(iam, ev.clientX, ev.clientY);
+        ctrl.get().open(iam, ev.clientX, ev.clientY);
       });
 
       return false;

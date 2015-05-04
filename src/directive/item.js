@@ -33,7 +33,7 @@ function Item() {
 
       ev.preventDefault();
       scope.$apply(function() {
-        ctrl.contextmenu.open(iam, ev.clientX, ev.clientY);
+        ctrl.get().open(iam, ev.clientX, ev.clientY);
       });
       return false;
     });
@@ -46,7 +46,7 @@ function Item() {
       ev.preventDefault();
 
       scope.$apply(function() {
-        ctrl.contextmenu.toggle(iam, multi);
+        ctrl.get().toggle(iam, multi);
       });
     });
 
@@ -57,7 +57,7 @@ function Item() {
 
       ev.preventDefault();
       scope.$apply(function() {
-        ctrl.contextmenu.open(iam, ev.clientX, ev.clientY);
+        ctrl.get().open(iam, ev.clientX, ev.clientY);
       });
 
       return false;

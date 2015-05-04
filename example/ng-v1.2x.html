@@ -33,12 +33,10 @@
         'io.dennis.contextmenu'
       ]).controller('MainCtrl', Main);
 
-      Main.$inject = ['ContextmenuService']
-      function Main($contextmenu) {
+      Main.$inject = []
+      function Main() {
         var vm = this;
         vm.DATA = window.DATA;
-
-        vm.contextmenu = $contextmenu;
 
         vm.remove = remove;
 
