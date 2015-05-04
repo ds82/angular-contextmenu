@@ -1,8 +1,8 @@
 {
   "name": "ng-contextmenu",
-  "version": "0.0.1",
-  "homepage": "https://github.com/ds82/mailadm",
-  "description": "A contextmenu for angular based apps",
+  "version": "0.0.2",
+  "homepage": "https://github.com/ds82/ng-contextmenu.git",
+  "description": "A contextmenu for angular & bootstrap apps",
   "main": "contextmenu.js",
   "keywords": [
     "angular",
@@ -12,7 +12,7 @@
     "menu"
   ],
   "authors": [
-    "Dennis Sänger <code14@mail.ds82.de>"
+    "Dennis Sänger <npm.ng-contextmenu.15@mail.ds82.de>"
   ],
   "license": "MIT",
   "ignore": [

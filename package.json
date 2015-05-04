@@ -1,0 +1,42 @@
+{
+  "name": "ng-contextmenu",
+  "version": "0.0.2",
+  "description": "a contextmenu helper service for angular & bootstrap",
+  "main": "contextmenu.js",
+  "scripts": {
+    "test": "karma start karma.conf.js",
+    "build": "npm run less && npm run browserify",
+    "browserify": "browserify src/index.js > dist/contextmenu.js",
+    "less": "lessc style/contextmenu.less > dist/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ds82/ng-contextmenu.git"
+  },
+  "keywords": [
+    "ng",
+    "angular",
+    "twbs",
+    "bootstrap",
+    "contextmenu"
+  ],
+  "author": "Dennis Sänger <npm.ng-contextmenu.15@mail.ds82.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ds82/ng-contextmenu/issues"
+  },
+  "homepage": "https://github.com/ds82/ng-contextmenu",
+  "devDependencies": {
+    "angular-mocks": "^1.3.15",
+    "browserify": "^9.0.8",
+    "jasmine-core": "^2.3.0",
+    "karma": "^0.12.31",
+    "karma-browserify": "^4.1.2",
+    "karma-chrome-launcher": "^0.1.8",
+    "karma-jasmine": "^0.3.5",
+    "less": "^2.5.0"
+  },
+  "dependencies": {
+    "angular": "^1.3.15"
+  }
+}
