@@ -1,0 +1,9 @@
+.contextmenu {
+  position: fixed;
+  display: block;
+  z-index: 5000;
+}
+.contextmenu li > a:hover {
+  background-color: #428bca;
+  color: #ffffff;
+}
