@@ -3,9 +3,8 @@
 [bootstrap]: http://getbootstrap.com
 [angular]: http://angularjs.org
 
-> A [bootstrap] contextmenu for [angular] based apps
+> An [angular] module that utilizes [bootstrap]'s dropdown as contextmenu
 
-A lot of web projects use bootstrap together with angular. My project actually all do.
 With this simple angular module you can use bootstrap's dropdown menu's as
 contextmenu's menu on various elements (e.g. tables).
 
@@ -13,11 +12,11 @@ contextmenu's menu on various elements (e.g. tables).
 
 ## Why?
 
-Yes, there are already a few angular modules which add contextmenu similar to this. *But* competition isn't a bad thing right? Furthermore most of the existing modules that do similar things use isolated scopes in their directive's. My module works without an isolated scope. Not using an isolated scope is no killer feature, but it helps to keep the memory usage small.
+Yes, there are already a few angular modules which add contextmenu similar to this. *But* competition isn't a bad thing right? My goal was to make a tiny module with a very small memory footprint, thus I decided to not use an isolated scope. At the same time, isolated scopes help to keep thing clean and separated, 
 
 ## How to use
 
- * get the contextmenu.(js|css) files
+ * get the contextmenu.(js|css) files from dist/
  * make them available on your page
  * make angular load the module:
 ```js
@@ -73,3 +72,7 @@ var app = angular.module('app', [
   </tr>
 </table>
 ```
+
+## example
+
+You can find an example with angular v1.2 and angular v1.3 in the example folder.
