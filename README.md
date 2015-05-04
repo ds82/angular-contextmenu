@@ -76,3 +76,20 @@ var app = angular.module('app', [
 ## example
 
 You can find an example with angular v1.2 and angular v1.3 in the example folder.
+
+## dev
+
+You can use npm to build/bundle the module:
+
+```
+npm install
+npm build
+```
+
+If you want a watcher and auto-rebuild you can use nodemon for this:
+
+```
+npm install -g nodaemon
+nodemon --ignore dist --exec "npm run build"
+```
+
