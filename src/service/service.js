@@ -4,25 +4,25 @@ angular.module('io.dennis.contextmenu')
     .service('ContextmenuService', Contextmenu);
 
 function Contextmenu() {
+  var pub = this;
+
   var selected = [];
   var menu;
 
-  return {
-    menu: menu,
-    selected: selected,
+  pub.menu = menu;
+  pub.selected = selected;
 
-    setMenu: setMenu,
-    add: add,
-    remove: remove,
-    isSelected: isSelected,
-    get: get,
-    num: getNumberOf,
-    open: open,
-    close: close,
-    toggle: toggle,
-    clear: clear,
-    listOfIds: getListOfIds
-  };
+  pub.setMenu = setMenu;
+  pub.add = add;
+  pub.remove = remove;
+  pub.isSelected = isSelected;
+  pub.get = get;
+  pub.num = getNumberOf;
+  pub.open = open;
+  pub.close = close;
+  pub.toggle = toggle;
+  pub.clear = clear;
+  pub.listOfIds = getListOfIds;
 
   function setMenu(ctrl) {
     menu = ctrl;
@@ -33,6 +33,7 @@ function Contextmenu() {
       selected.unshift(entry);
       toggleSelected(entry.element, true);
     }
+    pub.item = selected[0].item;
   }
 
   function remove(entry) {

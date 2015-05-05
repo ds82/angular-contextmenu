@@ -32,9 +32,8 @@ function Item() {
     iam.element.on('click', function(ev) {
 
       ev.preventDefault();
-      scope.$apply(function() {
-        ctrl.get().open(iam, ev.clientX, ev.clientY);
-      });
+      ctrl.get().open(iam, ev.clientX, ev.clientY);
+      scope.$apply();
       return false;
     });
   }
@@ -45,9 +44,8 @@ function Item() {
       var multi = ev.ctrlKey || ev.metaKey;
       ev.preventDefault();
 
-      scope.$apply(function() {
-        ctrl.get().toggle(iam, multi);
-      });
+      ctrl.get().toggle(iam, multi);
+      scope.$apply();
     });
 
     iam.element.on('contextmenu', function(ev) {
@@ -56,9 +54,8 @@ function Item() {
       if (ev.ctrlKey || ev.metaKey) { return; }
 
       ev.preventDefault();
-      scope.$apply(function() {
-        ctrl.get().open(iam, ev.clientX, ev.clientY);
-      });
+      ctrl.get().open(iam, ev.clientX, ev.clientY);
+      scope.$apply();
 
       return false;
     });

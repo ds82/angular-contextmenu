@@ -11,11 +11,8 @@ Contextmenu.$inject = [
 
 function Contextmenu($window, $rootScope, $contextmenu) {
 
-  var $body = angular.element('body');
   var $windowElement = angular.element($window);
-
-  $body.on('click contextmenu', broadcastClose);
-  $windowElement.on('scroll', broadcastClose);
+  $windowElement.on('click contextmenu scroll', broadcastClose);
 
   return {
     scope: {

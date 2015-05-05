@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.ngContextmenu = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
@@ -25,7 +25,7 @@ function ContainerCtrl($scope) {
   }
 }
 
-},{}],2:[function(require,module,exports){
+},{}],2:[function(_dereq_,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
@@ -39,11 +39,8 @@ Contextmenu.$inject = [
 
 function Contextmenu($window, $rootScope, $contextmenu) {
 
-  var $body = angular.element('body');
   var $windowElement = angular.element($window);
-
-  $body.on('click contextmenu', broadcastClose);
-  $windowElement.on('scroll', broadcastClose);
+  $windowElement.on('click contextmenu scroll', broadcastClose);
 
   return {
     scope: {
@@ -98,7 +95,7 @@ function CotextmenuCtrl($scope, $window) {
   }
 }
 
-},{}],3:[function(require,module,exports){
+},{}],3:[function(_dereq_,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
@@ -133,9 +130,8 @@ function Item() {
     iam.element.on('click', function(ev) {
 
       ev.preventDefault();
-      scope.$apply(function() {
-        ctrl.get().open(iam, ev.clientX, ev.clientY);
-      });
+      ctrl.get().open(iam, ev.clientX, ev.clientY);
+      scope.$apply();
       return false;
     });
   }
@@ -146,9 +142,8 @@ function Item() {
       var multi = ev.ctrlKey || ev.metaKey;
       ev.preventDefault();
 
-      scope.$apply(function() {
-        ctrl.get().toggle(iam, multi);
-      });
+      ctrl.get().toggle(iam, multi);
+      scope.$apply();
     });
 
     iam.element.on('contextmenu', function(ev) {
@@ -157,9 +152,8 @@ function Item() {
       if (ev.ctrlKey || ev.metaKey) { return; }
 
       ev.preventDefault();
-      scope.$apply(function() {
-        ctrl.get().open(iam, ev.clientX, ev.clientY);
-      });
+      ctrl.get().open(iam, ev.clientX, ev.clientY);
+      scope.$apply();
 
       return false;
     });
@@ -171,43 +165,43 @@ function Item() {
 
 }
 
-},{}],4:[function(require,module,exports){
+},{}],4:[function(_dereq_,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu', []);
 
-require('./service/service');
+_dereq_('./service/service');
 
-require('./directive/contextmenu');
-require('./directive/container');
-require('./directive/item');
+_dereq_('./directive/contextmenu');
+_dereq_('./directive/container');
+_dereq_('./directive/item');
 
-},{"./directive/container":1,"./directive/contextmenu":2,"./directive/item":3,"./service/service":5}],5:[function(require,module,exports){
+},{"./directive/container":1,"./directive/contextmenu":2,"./directive/item":3,"./service/service":5}],5:[function(_dereq_,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
     .service('ContextmenuService', Contextmenu);
 
 function Contextmenu() {
+  var pub = this;
+
   var selected = [];
   var menu;
 
-  return {
-    menu: menu,
-    selected: selected,
+  pub.menu = menu;
+  pub.selected = selected;
 
-    setMenu: setMenu,
-    add: add,
-    remove: remove,
-    isSelected: isSelected,
-    get: get,
-    num: getNumberOf,
-    open: open,
-    close: close,
-    toggle: toggle,
-    clear: clear,
-    listOfIds: getListOfIds
-  };
+  pub.setMenu = setMenu;
+  pub.add = add;
+  pub.remove = remove;
+  pub.isSelected = isSelected;
+  pub.get = get;
+  pub.num = getNumberOf;
+  pub.open = open;
+  pub.close = close;
+  pub.toggle = toggle;
+  pub.clear = clear;
+  pub.listOfIds = getListOfIds;
 
   function setMenu(ctrl) {
     menu = ctrl;
@@ -218,6 +212,7 @@ function Contextmenu() {
       selected.unshift(entry);
       toggleSelected(entry.element, true);
     }
+    pub.item = selected[0].item;
   }
 
   function remove(entry) {
@@ -306,4 +301,5 @@ function Contextmenu() {
   }
 }
 
-},{}]},{},[4]);
+},{}]},{},[4])(4)
+});
