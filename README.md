@@ -1,7 +1,9 @@
-# ng-contextmenu
+# angular-contextmenu
 
+[jquery]: http://jquery.com
 [bootstrap]: http://getbootstrap.com
 [angular]: http://angularjs.org
+[download]: https://github.com/ds82/angular-contextmenu/releases
 
 > An [angular] module that utilizes [bootstrap]'s dropdown as contextmenu
 
@@ -14,7 +16,15 @@ contextmenu's menu on various elements (e.g. tables).
 
 Yes, there are already a few angular modules which add contextmenu similar to this. *But* competition isn't a bad thing right? My goal was to make a tiny module with a very small memory footprint, thus I decided to not use an isolated scope. At the same time, isolated scopes help to keep thing clean and separated, 
 
+
 ## How to use
+
+Install via npm..
+```
+npm install angular-contextmenu
+```
+
+or [download] from github.
 
  * get the contextmenu.(js|css) files from dist/
  * make them available on your page
