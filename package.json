@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ds82/ng-contextmenu.git"
+    "url": "https://github.com/ds82/angular-contextmenu.git"
   },
   "keywords": [
     "ng",
@@ -24,9 +24,9 @@
   "author": "Dennis Sänger <npm.ng-contextmenu.15@mail.ds82.de>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ds82/ng-contextmenu/issues"
+    "url": "https://github.com/ds82/angular-contextmenu/issues"
   },
-  "homepage": "https://github.com/ds82/ng-contextmenu",
+  "homepage": "https://github.com/ds82/angular-contextmenu",
   "devDependencies": {
     "angular": "^1.3.15",
     "angular-mocks": "^1.3.15",
