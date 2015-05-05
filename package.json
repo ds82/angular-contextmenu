@@ -1,6 +1,6 @@
 {
   "name": "angular-contextmenu",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "a contextmenu helper service for angular & bootstrap",
   "main": "dist/contextmenu.js",
   "scripts": {
@@ -40,6 +40,5 @@
     "karma-jasmine": "^0.3.5",
     "less": "^2.5.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
