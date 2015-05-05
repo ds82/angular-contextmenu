@@ -7,15 +7,21 @@
 
 > An [angular] module that utilizes [bootstrap]'s dropdown as contextmenu
 
-With this simple angular module you can use bootstrap's dropdown menu's as
-contextmenu's menu on various elements (e.g. tables).
+With this simple angular module you can use bootstrap dropdown menus as
+contextmenus on various elements (e.g. tables).
 
 ![](screen.png)
 
 ## Why?
 
-Yes, there are already a few angular modules which add contextmenu similar to this. *But* competition isn't a bad thing right? My goal was to make a tiny module with a very small memory footprint, thus I decided to not use an isolated scope. At the same time, isolated scopes help to keep thing clean and separated, 
+Yes, there are already a few angular modules which add contextmenus similar to this. *But* competition isn't a bad thing right?
 
+## Todos
+
+* remove jquery & bootstrap dependency
+* add more tests
+* add travis integration
+* document code
 
 ## How to use
 
