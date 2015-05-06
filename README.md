@@ -1,5 +1,7 @@
 # angular-contextmenu
 
+[demo]: http://ds82.github.io/angular-contextmenu/
+[jsbin]: http://jsbin.com/hodul/5/edit?html,js,output
 [jquery]: http://jquery.com
 [bootstrap]: http://getbootstrap.com
 [angular]: http://angularjs.org
@@ -9,6 +11,8 @@
 
 With this simple angular module you can use bootstrap dropdown menus as
 contextmenus on various elements (e.g. tables).
+
+Try the **[DEMO][demo]** or have a look at [jsbin].
 
 ![](screen.png)
 
