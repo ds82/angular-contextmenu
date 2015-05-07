@@ -52,18 +52,18 @@ var app = angular.module('app', [
 <div contextmenu="meta.contextmenu" class="dropdown contextmenu">
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">
-      {{ meta.contextmenu.$item.email }}
+      {{ meta.contextmenu.item.email }}
     </li>
     <li>
       <a role="menuitem" tabindex="-1" href
-         ng-href="#/user/{{ meta.contextmenu.$item.email }}/edit"
+         ng-href="#/user/{{ meta.contextmenu.item.email }}/edit"
       >
         <span>Edit</span>
       </a>
     </li>
     <li>
-      <a role="menuitem" href 
-        ng-click="delete( meta.contextmenu.$item )"
+      <a role="menuitem" href
+        ng-click="delete(meta.contextmenu.item)"
       >
         <span>Delete</span>
       </a>
