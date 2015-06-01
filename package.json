@@ -1,6 +1,6 @@
 {
   "name": "angular-contextmenu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a contextmenu helper service for angular & bootstrap",
   "main": "dist/contextmenu.js",
   "scripts": {
