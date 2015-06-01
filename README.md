@@ -103,7 +103,7 @@ You can use npm to build/bundle the module:
 
 ```
 npm install
-npm build
+npm run build
 ```
 
 If you want a watcher and auto-rebuild you can use nodemon for this:
