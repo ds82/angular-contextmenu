@@ -2,6 +2,7 @@
 
 describe('io.dennis.contextmenu', function() {
   var mock = angular.mock;
+  var ae = angular.element;
 
   describe('directive:contextmenu', function() {
     var $injector, $compile, $rootScope;
@@ -17,8 +18,6 @@ describe('io.dennis.contextmenu', function() {
     }));
 
     it('should register $window.(click|contextmenu|scroll)', function() {
-      var ae = angular.element;
-
       var $window = $injector.get('$window');
       var $windowElementStub = jasmine.createSpyObj('we', ['on']);
 
@@ -43,9 +42,6 @@ describe('io.dennis.contextmenu', function() {
     });
 
     it('should broadcast contextmenu.close on <event>', function(done) {
-
-      var ae = angular.element;
-
       var $window = $injector.get('$window');
       var $windowElementStub = jasmine.createSpyObj('we', ['on']);
 
@@ -68,6 +64,34 @@ describe('io.dennis.contextmenu', function() {
         done();
       }
 
+    });
+
+    it('should be able to register two independant menus', function() {
+      var html = '<div contextmenu="some.menu"></div>';
+      html += '<div contextmenu="other.menu"></div>';
+
+      var element = angular.element(html);
+      $compile(element)($scope);
+
+      $rootScope.$apply();
+      expect($scope.some.menu).not.toEqual($scope.other.menu);
+    });
+
+    it('should close other menus before opening current', function() {
+      var html = '<div contextmenu="some.menu"></div>';
+      html += '<div contextmenu="other.menu"></div>';
+
+      var element = angular.element(html);
+      var compiled = $compile(element)($scope);
+      $rootScope.$apply();
+
+      var first = ae(compiled['0']);
+      var second = ae(compiled['1']);
+
+      first.controller('contextmenu').open();
+      second.controller('contextmenu').open();
+
+      expect(first.hasClass('ng-hide')).toEqual(true);
     });
 
   });

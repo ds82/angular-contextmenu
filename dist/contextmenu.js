@@ -57,14 +57,14 @@ function Contextmenu($window, $rootScope, $contextmenu) {
   }
 
   function link(scope, element, attrs, ctrl) {
-    scope.contextmenu = $contextmenu;
+    scope.contextmenu = $contextmenu.$get();
     scope.contextmenu.setMenu(ctrl);
     ctrl.setElement(element);
   }
 }
 
-CotextmenuCtrl.$inject = ['$scope', '$window'];
-function CotextmenuCtrl($scope, $window) {
+CotextmenuCtrl.$inject = ['$scope', '$window', '$rootScope'];
+function CotextmenuCtrl($scope, $window, $rootScope) {
 
   var pub = this;
   var $element;
@@ -75,6 +75,7 @@ function CotextmenuCtrl($scope, $window) {
   pub.setElement = setElement;
 
   function open(item, x, y) {
+    $rootScope.$broadcast('contextmenu.close');
     $element.css({top: y, left: x})
     .toggleClass('dropup', isDropup(y))
     .toggleClass('open', true)
@@ -180,7 +181,15 @@ _dereq_('./directive/item');
 'use strict';
 
 angular.module('io.dennis.contextmenu')
-    .service('ContextmenuService', Contextmenu);
+    .service('ContextmenuService', ContextmenuProvider);
+
+function ContextmenuProvider() {
+  var self = this;
+
+  self.$get = function() {
+    return new Contextmenu();
+  };
+}
 
 function Contextmenu() {
   var pub = this;
@@ -188,20 +197,24 @@ function Contextmenu() {
   var selected = [];
   var menu;
 
-  pub.menu = menu;
-  pub.selected = selected;
+  init();
 
-  pub.setMenu = setMenu;
-  pub.add = add;
-  pub.remove = remove;
-  pub.isSelected = isSelected;
-  pub.get = get;
-  pub.num = getNumberOf;
-  pub.open = open;
-  pub.close = close;
-  pub.toggle = toggle;
-  pub.clear = clear;
-  pub.listOfIds = getListOfIds;
+  function init() {
+    pub.menu = menu;
+    pub.selected = selected;
+
+    pub.setMenu = setMenu;
+    pub.add = add;
+    pub.remove = remove;
+    pub.isSelected = isSelected;
+    pub.get = get;
+    pub.num = getNumberOf;
+    pub.open = open;
+    pub.close = close;
+    pub.toggle = toggle;
+    pub.clear = clear;
+    pub.listOfIds = getListOfIds;
+  }
 
   function setMenu(ctrl) {
     menu = ctrl;

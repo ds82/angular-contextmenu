@@ -29,14 +29,14 @@ function Contextmenu($window, $rootScope, $contextmenu) {
   }
 
   function link(scope, element, attrs, ctrl) {
-    scope.contextmenu = $contextmenu;
+    scope.contextmenu = $contextmenu.$get();
     scope.contextmenu.setMenu(ctrl);
     ctrl.setElement(element);
   }
 }
 
-CotextmenuCtrl.$inject = ['$scope', '$window'];
-function CotextmenuCtrl($scope, $window) {
+CotextmenuCtrl.$inject = ['$scope', '$window', '$rootScope'];
+function CotextmenuCtrl($scope, $window, $rootScope) {
 
   var pub = this;
   var $element;
@@ -47,6 +47,7 @@ function CotextmenuCtrl($scope, $window) {
   pub.setElement = setElement;
 
   function open(item, x, y) {
+    $rootScope.$broadcast('contextmenu.close');
     $element.css({top: y, left: x})
     .toggleClass('dropup', isDropup(y))
     .toggleClass('open', true)
