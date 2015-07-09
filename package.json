@@ -6,6 +6,7 @@
   "scripts": {
     "prepublish": "npm run build && npm test",
     "test": "karma start karma.conf.js --single-run",
+    "test-travis": "karma start karma.conf.js --single-run --browsers PhantomJS",
     "build": "npm run less && npm run browserify",
     "browserify": "browserify src/index.js --standalone ng-contextmenu | derequire > dist/contextmenu.js",
     "less": "lessc style/contextmenu.less > dist/style.css"
