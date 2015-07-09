@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "test": "karma start karma.conf.js --single-run",
-    "test-travis": "karma start karma.conf.js --single-run --browsers PhantomJS",
+    "test-travis": "karma start karma.conf.js --single-run --browsers PhantomJS,sl_chrome",
     "build": "npm run less && npm run browserify",
     "browserify": "browserify src/index.js --standalone ng-contextmenu | derequire > dist/contextmenu.js",
     "less": "lessc style/contextmenu.less > dist/style.css"
@@ -40,6 +40,7 @@
     "karma-chrome-launcher": "0.1.12",
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "0.3.5",
+    "karma-sauce-launcher": "^0.2.14",
     "karma-phantomjs-launcher": "0.2.0",
     "less": "2.5.3"
   },

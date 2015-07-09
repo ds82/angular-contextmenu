@@ -1,10 +1,14 @@
 language: node_js
 sudo: false
 node_js:
-  - "0.12"
-
+- '0.12'
 branches:
   except:
-    - gh-pages
-
-script: "npm run test-travis"
+  - gh-pages
+addons:
+  sauce_connect: true
+script: npm run test-travis
+env:
+  global:
+    - secure: C3JTeJ5toWcEsXNtGADpT6ppL0H/GTYxO7XVNwTRHwN7jp1BHoTVzvfD7d/XBmbVmpJD5JVnAVEx4PSCalNgMPtJlgqhuVSbHb3vjWYTvWj70bI211xX7H22bq9s5QLzE6PxpV5Wj8zp5cDOt2zHc0zz6qsVotWCh7KYUJS5Znk=
+    - secure: BdUaB5RCDqRnHaHETDtTdX3EBms6ejcs7g+Qv2RuE7/qygHl6IyLZ8omI96vZpyp8iWdg24siACC0ypodZLAWpEkyeJTO9Aug06R0iRNMtXb7M0TDuToZ16KE0IBwjKfY2LY2g/I6gK3d0gj4MF61wGlNdS6NSP+ZnlC4SCsxB0=

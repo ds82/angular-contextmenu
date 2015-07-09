@@ -12,7 +12,21 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-phantomjs-launcher',
+      'karma-sauce-launcher'
     ],
+
+    customLaunchers: {
+      sl_chrome: {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        platform: 'Windows 7',
+        version: '35'
+      }
+    },
+
+    sauceLabs: {
+      testName: '[karma] angular-contextmenu'
+    },
 
     // frameworks to use
     frameworks: ['browserify', 'jasmine'],
@@ -47,7 +61,7 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     // reporters: ['progress', 'html'],
-    reporters: ['progress'],
+    reporters: ['progress', 'saucelabs'],
 
     // the default configuration
     htmlReporter: {
