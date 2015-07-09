@@ -4,7 +4,7 @@
   "description": "a contextmenu helper service for angular & bootstrap",
   "main": "dist/contextmenu.js",
   "scripts": {
-    "prepublish": "npm run build && npm test",
+    "prepublish": "npm run build",
     "test": "karma start karma.conf.js --single-run",
     "test-travis": "karma start karma.conf.js --single-run --browsers PhantomJS",
     "build": "npm run less && npm run browserify",
