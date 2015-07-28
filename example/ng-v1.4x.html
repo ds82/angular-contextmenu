@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="MainCtrl as main">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ng-contextmenu angular v{{main.version.full}} example</title>
+
+    <!-- jquery -->
+    <!-- bootstrap js requires jquery -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- angular -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- example data -->
+    <script src="./data.js"></script>
+
+    <!-- ng-contextmenu -->
+    <script src="../dist/contextmenu.js"></script>
+    <link href="../dist/style.css" rel="stylesheet">
+
+    <!-- example app -->
+    <script src="app.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="page-header">
+        <h1>ng-contextmenu angular v{{main.version.full}} example</h1>
+
+        <p class="lead">
+        </p>
+      </div>
+
+      <h3>data table example</h3>
+
+      <!-- contextmenu -->
+      <div contextmenu="main.contextmenu" class="dropdown contextmenu">
+        <ul class="dropdown-menu" role="menu">
+          <li class="dropdown-header">
+            {{ main.contextmenu.get().item.email }}
+          </li>
+          <li>
+            <a role="menuitem" tabindex="-1" href ng-href="https://www.google.de/#q={{main.contextmenu.get().item.email}}">
+              <span>Google</span>
+            </a>
+          </li>
+          <li>
+            <a role="menuitem" href ng-click="main.remove(main.contextmenu.get().item.email)">
+              <span>Delete</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- table -->
+      <table class="table-striped table" contextmenu-container="main.contextmenu">
+        <tr ng-repeat="row in main.DATA" contextmenu-item="row">
+          <td>{{ row.id }}</td>
+          <td>{{ row.first_name }}</td>
+          <td>{{ row.last_name }}</td>
+          <td>{{ row.email }}</td>
+          <td>{{ row.country }}</td>
+          <td>{{ row.ip_address }}</td>
+        </tr>
+      </table>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
