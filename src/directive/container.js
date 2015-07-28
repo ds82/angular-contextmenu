@@ -9,12 +9,11 @@ function Container() {
       contextmenu: '=contextmenuContainer'
     },
     restrict: 'A',
-    controller: ContainerCtrl,
+    controller: ['$scope', ContainerCtrl]
   };
 
 }
 
-ContainerCtrl.$inject = ['$scope'];
 function ContainerCtrl($scope) {
   var pub = this;
   pub.get = get;

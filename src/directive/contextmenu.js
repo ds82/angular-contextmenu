@@ -19,7 +19,7 @@ function Contextmenu($window, $rootScope, $contextmenu) {
       contextmenu: '='
     },
     restrict: 'A',
-    controller: CotextmenuCtrl,
+    controller: ['$scope', '$window', '$rootScope', CotextmenuCtrl],
     link: link,
     priority: 100
   };
@@ -35,7 +35,6 @@ function Contextmenu($window, $rootScope, $contextmenu) {
   }
 }
 
-CotextmenuCtrl.$inject = ['$scope', '$window', '$rootScope'];
 function CotextmenuCtrl($scope, $window, $rootScope) {
 
   var pub = this;

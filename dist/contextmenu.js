@@ -10,12 +10,11 @@ function Container() {
       contextmenu: '=contextmenuContainer'
     },
     restrict: 'A',
-    controller: ContainerCtrl,
+    controller: ['$scope', ContainerCtrl]
   };
 
 }
 
-ContainerCtrl.$inject = ['$scope'];
 function ContainerCtrl($scope) {
   var pub = this;
   pub.get = get;
@@ -47,7 +46,7 @@ function Contextmenu($window, $rootScope, $contextmenu) {
       contextmenu: '='
     },
     restrict: 'A',
-    controller: CotextmenuCtrl,
+    controller: ['$scope', '$window', '$rootScope', CotextmenuCtrl],
     link: link,
     priority: 100
   };
@@ -63,7 +62,6 @@ function Contextmenu($window, $rootScope, $contextmenu) {
   }
 }
 
-CotextmenuCtrl.$inject = ['$scope', '$window', '$rootScope'];
 function CotextmenuCtrl($scope, $window, $rootScope) {
 
   var pub = this;
