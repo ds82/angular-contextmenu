@@ -34,6 +34,11 @@ Install via npm..
 npm install angular-contextmenu
 ```
 
+Install via bower..
+```
+bower install angular-contextmenu
+```
+
 or [download] from github.
 
  * get the contextmenu.(js|css) files from dist/
