@@ -36,8 +36,14 @@ describe('io.dennis.contextmenu', function() {
       $compile(element)($scope);
 
       expect($windowElementStub.on).toHaveBeenCalledWith(
-        'click contextmenu scroll', jasmine.any(Function)
+        'contextmenu scroll', jasmine.any(Function)
       );
+
+      if (!isFirefox()) {
+        expect($windowElementStub.on).toHaveBeenCalledWith(
+          'click', jasmine.any(Function)
+        );
+      }
 
     });
 
@@ -97,3 +103,7 @@ describe('io.dennis.contextmenu', function() {
   });
 
 });
+
+function isFirefox() {
+  return !!window.navigator.userAgent.match(/firefox/i);
+}

@@ -12,7 +12,17 @@ Contextmenu.$inject = [
 function Contextmenu($window, $rootScope, $contextmenu) {
 
   var $windowElement = angular.element($window);
-  $windowElement.on('click contextmenu scroll', broadcastClose);
+  $windowElement.on('contextmenu scroll', broadcastClose);
+
+
+  // only close contextmenu on window.click if not on firefox
+  // due to bug #5
+  // https://github.com/ds82/angular-contextmenu/issues/5
+  //
+  // TODO browser sniffing sucks :/
+  if (!isFirefox()) {
+    $windowElement.on('click', broadcastClose);
+  }
 
   return {
     scope: {
@@ -48,9 +58,9 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
   function open(item, x, y) {
     $rootScope.$broadcast('contextmenu.close');
     $element.css({top: y, left: x})
-    .toggleClass('dropup', isDropup(y))
-    .toggleClass('open', true)
-    .toggleClass('ng-hide', false);
+      .toggleClass('dropup', isDropup(y))
+      .toggleClass('open', true)
+      .toggleClass('ng-hide', false);
   }
 
   function close() {
@@ -65,4 +75,8 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
     var mid = $window.innerHeight / 2;
     return (y > mid);
   }
+}
+
+function isFirefox() {
+  return !!window.navigator.userAgent.match(/firefox/i);
 }

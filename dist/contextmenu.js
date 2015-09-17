@@ -39,7 +39,17 @@ Contextmenu.$inject = [
 function Contextmenu($window, $rootScope, $contextmenu) {
 
   var $windowElement = angular.element($window);
-  $windowElement.on('click contextmenu scroll', broadcastClose);
+  $windowElement.on('contextmenu scroll', broadcastClose);
+
+
+  // only close contextmenu on window.click if not on firefox
+  // due to bug #5
+  // https://github.com/ds82/angular-contextmenu/issues/5
+  //
+  // TODO browser sniffing sucks :/
+  if (!isFirefox()) {
+    $windowElement.on('click', broadcastClose);
+  }
 
   return {
     scope: {
@@ -75,9 +85,9 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
   function open(item, x, y) {
     $rootScope.$broadcast('contextmenu.close');
     $element.css({top: y, left: x})
-    .toggleClass('dropup', isDropup(y))
-    .toggleClass('open', true)
-    .toggleClass('ng-hide', false);
+      .toggleClass('dropup', isDropup(y))
+      .toggleClass('open', true)
+      .toggleClass('ng-hide', false);
   }
 
   function close() {
@@ -92,6 +102,10 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
     var mid = $window.innerHeight / 2;
     return (y > mid);
   }
+}
+
+function isFirefox() {
+  return !!window.navigator.userAgent.match(/firefox/i);
 }
 
 },{}],3:[function(_dereq_,module,exports){
@@ -127,8 +141,8 @@ function Item() {
 
   function registerTouch(iam, scope, ctrl) {
     iam.element.on('click', function(ev) {
-
       ev.preventDefault();
+      ev.stopPropagation();
       ctrl.get().open(iam, ev.clientX, ev.clientY);
       scope.$apply();
       return false;
@@ -137,20 +151,22 @@ function Item() {
 
   function registerMouse(iam, scope, ctrl) {
     iam.element.on('click', function(ev) {
-
       var multi = ev.ctrlKey || ev.metaKey;
       ev.preventDefault();
+      ev.stopPropagation();
 
       ctrl.get().toggle(iam, multi);
       scope.$apply();
     });
 
     iam.element.on('contextmenu', function(ev) {
-
       // don't show context menu if user holds down ctrl || cmd key
       if (ev.ctrlKey || ev.metaKey) { return; }
 
       ev.preventDefault();
+      ev.stopPropagation();
+      ev.stopImmediatePropagation();
+
       ctrl.get().open(iam, ev.clientX, ev.clientY);
       scope.$apply();
 
