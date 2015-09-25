@@ -35,7 +35,7 @@
     "derequire": "2.0.1",
     "jasmine-core": "2.3.3",
     "jquery": "1.11.3",
-    "karma": "0.12.37",
+    "karma": "0.13.10",
     "karma-browserify": "4.2.2",
     "karma-chrome-launcher": "0.1.12",
     "karma-firefox-launcher": "^0.1.6",
