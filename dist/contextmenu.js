@@ -28,7 +28,32 @@ function ContainerCtrl($scope) {
 'use strict';
 
 angular.module('io.dennis.contextmenu')
+  .provider('$contextmenu', ContextmenuProvider)
   .directive('contextmenu', Contextmenu);
+
+var config = {
+  DEBOUNCE_BROADCAST_TIME: 200
+};
+var contextmenuConfig = new ContextmenuConfig();
+
+function ContextmenuConfig() {
+  this.set = function(key, value) {
+    if (config[key]) {
+      config[key] = value;
+    }
+    return config[key];
+  };
+
+  this.get = function(key) {
+    return config[key];
+  };
+}
+
+function ContextmenuProvider() {
+  this.$get = function() {
+    return contextmenuConfig;
+  };
+}
 
 Contextmenu.$inject = [
   '$window',
@@ -48,7 +73,7 @@ function Contextmenu($window, $rootScope, $contextmenu) {
         canBroadcast = false;
         setTimeout(function() {
           canBroadcast = true;
-        }, 200);
+        }, config.DEBOUNCE_BROADCAST_TIME);
       }
     }
   })($rootScope);
