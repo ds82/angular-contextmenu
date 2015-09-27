@@ -28,7 +28,7 @@ function ContainerCtrl($scope) {
 'use strict';
 
 angular.module('io.dennis.contextmenu')
-    .directive('contextmenu', Contextmenu);
+  .directive('contextmenu', Contextmenu);
 
 Contextmenu.$inject = [
   '$window',
@@ -36,20 +36,25 @@ Contextmenu.$inject = [
   'ContextmenuService'
 ];
 
+var canBroadcast = true;
+var broadcastClose;
+
 function Contextmenu($window, $rootScope, $contextmenu) {
 
+  broadcastClose = (function($rootScope) {
+    return function _broadcastClose() {
+      if (canBroadcast) {
+        $rootScope.$broadcast('contextmenu.close');
+        canBroadcast = false;
+        setTimeout(function() {
+          canBroadcast = true;
+        }, 200);
+      }
+    }
+  })($rootScope);
+
   var $windowElement = angular.element($window);
-  $windowElement.on('contextmenu scroll', broadcastClose);
-
-
-  // only close contextmenu on window.click if not on firefox
-  // due to bug #5
-  // https://github.com/ds82/angular-contextmenu/issues/5
-  //
-  // TODO browser sniffing sucks :/
-  if (!isFirefox()) {
-    $windowElement.on('click', broadcastClose);
-  }
+  $windowElement.on('contextmenu scroll click', broadcastClose);
 
   return {
     scope: {
@@ -61,9 +66,6 @@ function Contextmenu($window, $rootScope, $contextmenu) {
     priority: 100
   };
 
-  function broadcastClose() {
-    $rootScope.$broadcast('contextmenu.close');
-  }
 
   function link(scope, element, attrs, ctrl) {
     scope.contextmenu = $contextmenu.$get();
@@ -73,6 +75,7 @@ function Contextmenu($window, $rootScope, $contextmenu) {
 }
 
 function CotextmenuCtrl($scope, $window, $rootScope) {
+  console.log('init contextmenu ctrl');
 
   var pub = this;
   var $element;
@@ -83,7 +86,7 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
   pub.setElement = setElement;
 
   function open(item, x, y) {
-    $rootScope.$broadcast('contextmenu.close');
+    broadcastClose();
     $element.css({top: y, left: x})
       .toggleClass('dropup', isDropup(y))
       .toggleClass('open', true)
@@ -102,10 +105,6 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
     var mid = $window.innerHeight / 2;
     return (y > mid);
   }
-}
-
-function isFirefox() {
-  return !!window.navigator.userAgent.match(/firefox/i);
 }
 
 },{}],3:[function(_dereq_,module,exports){

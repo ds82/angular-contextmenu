@@ -36,15 +36,8 @@ describe('io.dennis.contextmenu', function() {
       $compile(element)($scope);
 
       expect($windowElementStub.on).toHaveBeenCalledWith(
-        'contextmenu scroll', jasmine.any(Function)
+        'contextmenu scroll click', jasmine.any(Function)
       );
-
-      if (!isFirefox()) {
-        expect($windowElementStub.on).toHaveBeenCalledWith(
-          'click', jasmine.any(Function)
-        );
-      }
-
     });
 
     it('should broadcast contextmenu.close on <event>', function(done) {
@@ -83,7 +76,7 @@ describe('io.dennis.contextmenu', function() {
       expect($scope.some.menu).not.toEqual($scope.other.menu);
     });
 
-    it('should close other menus before opening current', function() {
+    it('should close other menus before opening current', function(done) {
       var html = '<div contextmenu="some.menu"></div>';
       html += '<div contextmenu="other.menu"></div>';
 
@@ -95,15 +88,15 @@ describe('io.dennis.contextmenu', function() {
       var second = ae(compiled['1']);
 
       first.controller('contextmenu').open();
-      second.controller('contextmenu').open();
 
-      expect(first.hasClass('ng-hide')).toEqual(true);
+      setTimeout(function() {
+        second.controller('contextmenu').open();
+
+        expect(first.hasClass('ng-hide')).toEqual(true);
+        done();
+      }, 300);
     });
 
   });
 
 });
-
-function isFirefox() {
-  return !!window.navigator.userAgent.match(/firefox/i);
-}
