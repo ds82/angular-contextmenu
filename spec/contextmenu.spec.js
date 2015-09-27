@@ -14,6 +14,9 @@ describe('io.dennis.contextmenu', function() {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
 
+      var configService = $injector.get('$contextmenu');
+      configService.set('DEBOUNCE_BROADCAST_TIME', 0);
+
       $scope = $rootScope.$new();
     }));
 
@@ -94,7 +97,7 @@ describe('io.dennis.contextmenu', function() {
 
         expect(first.hasClass('ng-hide')).toEqual(true);
         done();
-      }, 300);
+      }, 1);
     });
 
   });
