@@ -30,8 +30,6 @@
   },
   "homepage": "https://github.com/ds82/angular-contextmenu",
   "devDependencies": {
-    "angular": "1.4.6",
-    "angular-mocks": "1.4.7",
     "browserify": "9.0.8",
     "derequire": "2.0.1",
     "jasmine-core": "2.3.3",
@@ -39,11 +37,11 @@
     "karma": "0.13.10",
     "karma-browserify": "4.4.0",
     "karma-chrome-launcher": "0.1.12",
-    "karma-firefox-launcher": "^0.1.6",
+    "karma-firefox-launcher": "0.1.6",
     "karma-jasmine": "0.3.5",
     "karma-phantomjs-launcher": "0.2.0",
-    "less": "2.5.3"
-    "semantic-release": "^4.3.5"
+    "less": "2.5.3",
+    "semantic-release": "4.3.5"
   },
   "dependencies": {}
 }
