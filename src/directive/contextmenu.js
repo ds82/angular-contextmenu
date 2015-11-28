@@ -85,7 +85,7 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
 
   function open(item, x, y) {
     broadcastClose();
-    $element.css({top: y, left: x})
+    $element.css({top: y + 'px', left: x + 'px'})
       .toggleClass('dropup', isDropup(y))
       .toggleClass('open', true)
       .toggleClass('ng-hide', false);
