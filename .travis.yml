@@ -4,6 +4,7 @@ cache:
     - node_modules
 notifications:
   email: false
+language: node_js
 node_js:
   - '4'
   - '6'
