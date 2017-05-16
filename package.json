@@ -31,19 +31,19 @@
   },
   "homepage": "https://github.com/ds82/angular-contextmenu",
   "devDependencies": {
-    "browserify": "12.0.1",
-    "derequire": "2.0.3",
-    "jasmine-core": "2.3.0",
-    "jquery": "1.11.3",
-    "karma": "0.13.15",
-    "karma-browserify": "4.4.0",
-    "karma-chrome-launcher": "0.1.12",
-    "karma-cli": "0.1.1",
-    "karma-firefox-launcher": "0.1.6",
-    "karma-jasmine": "0.3.6",
-    "karma-phantomjs-launcher": "0.2.0",
-    "less": "2.5.3",
-    "semantic-release": "4.3.5"
+    "browserify": "14.3.0",
+    "derequire": "2.0.6",
+    "jasmine-core": "2.6.1",
+    "jquery": "3.2.1",
+    "karma": "1.7.0",
+    "karma-browserify": "5.1.1",
+    "karma-chrome-launcher": "2.1.1",
+    "karma-cli": "1.0.1",
+    "karma-firefox-launcher": "1.0.1",
+    "karma-jasmine": "1.1.0",
+    "karma-phantomjs-launcher": "1.0.4",
+    "less": "2.7.2",
+    "semantic-release": "6.3.6"
   },
   "dependencies": {}
 }
