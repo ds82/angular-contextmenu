@@ -50,7 +50,7 @@ describe('io.dennis.contextmenu', function() {
         $compile(element)($scope);
 
         expect($windowElementStub.on).toHaveBeenCalledWith(
-          'click contextmenu scroll', jasmine.any(Function)
+          'contextmenu scroll click', jasmine.any(Function)
         );
 
       });
