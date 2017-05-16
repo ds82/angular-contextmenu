@@ -5,7 +5,7 @@
 [![Build Status](https://secure.travis-ci.org/ds82/angular-contextmenu.svg)](http://travis-ci.org/ds82/angular-contextmenu) [![npm](https://img.shields.io/npm/v/angular-contextmenu.svg)]() [![Greenkeeper badge](https://badges.greenkeeper.io/ds82/angular-contextmenu.svg)](https://greenkeeper.io/)
 
 [demo]: http://ds82.github.io/angular-contextmenu/
-[jsbin]: http://jsbin.com/hodul/5/edit?html,js,output
+[jsbin]: http://jsbin.com/hodul/13/edit?html,js,output
 [jquery]: http://jquery.com
 [bootstrap]: http://getbootstrap.com
 [angular]: http://angularjs.org
