@@ -1,5 +1,7 @@
 # angular-contextmenu
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ds82/angular-contextmenu.svg)](https://greenkeeper.io/)
+
 [demo]: http://ds82.github.io/angular-contextmenu/
 [jsbin]: http://jsbin.com/hodul/5/edit?html,js,output
 [jquery]: http://jquery.com
