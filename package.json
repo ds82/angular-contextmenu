@@ -11,7 +11,7 @@
     "browserify": "browserify src/index.js --standalone ng-contextmenu | derequire > dist/contextmenu.js",
     "less": "lessc style/contextmenu.less > dist/style.css",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "install-scope": "npm install angular@$TEST_SCOPE angular-mocks@$TEST_SCOPE"
+    "install-scope": "TEST_SCOPE=${TEST_SCOPE:-1.6} npm install angular@$TEST_SCOPE angular-mocks@$TEST_SCOPE"
   },
   "repository": {
     "type": "git",

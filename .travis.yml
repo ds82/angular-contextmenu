@@ -25,3 +25,5 @@ env:
   - TEST_SCOPE=1.2
   - TEST_SCOPE=1.3
   - TEST_SCOPE=1.4
+  - TEST_SCOPE=1.5
+  - TEST_SCOPE=1.6
