@@ -59,11 +59,10 @@ function Contextmenu($window, $rootScope, $contextmenu) {
       contextmenu: '='
     },
     restrict: 'A',
-    controller: ['$scope', '$window', '$rootScope', CotextmenuCtrl],
+    controller: CotextmenuCtrl,
     link: link,
     priority: 100
   };
-
 
   function link(scope, element, attrs, ctrl) {
     scope.contextmenu = $contextmenu.$get();
@@ -72,9 +71,8 @@ function Contextmenu($window, $rootScope, $contextmenu) {
   }
 }
 
-function CotextmenuCtrl($scope, $window, $rootScope) {
-  console.log('init contextmenu ctrl');
-
+CotextmenuCtrl.$inject = ['$scope', '$window', '$rootScope', '$timeout'];
+function CotextmenuCtrl($scope, $window, $rootScope, $timeout) {
   var pub = this;
   var $element;
   $scope.$on('contextmenu.close', close);
@@ -85,10 +83,25 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
 
   function open(item, x, y) {
     broadcastClose();
-    $element.css({top: y + 'px', left: x + 'px'})
-      .toggleClass('dropup', isDropup(y))
+
+    $element
       .toggleClass('open', true)
+      .toggleClass('dropup', isDropup(y))
+      .css('visibility', 'hidden')
       .toggleClass('ng-hide', false);
+
+    $timeout(function() {
+      var width = $element.children().width();
+
+      x = (x + width > $window.innerWidth) ?
+        $window.innerWidth - (width + 5) : x;
+
+      $element.css({
+        top: y + 'px',
+        left: x + 'px',
+        visibility: 'visible'
+      });
+    });
   }
 
   function close() {

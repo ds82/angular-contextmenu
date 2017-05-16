@@ -5,15 +5,23 @@ describe('io.dennis.contextmenu', function() {
   var ae = angular.element;
 
   describe('directive:contextmenu', function() {
-    var $injector, $compile, $rootScope;
+    var mockWindow;
+    var $injector, $compile, $rootScope, $timeout;
     var $scope;
     var elementSpy;
 
-    beforeEach(mock.module('io.dennis.contextmenu'));
-    beforeEach(inject(function(_$injector_, _$compile_, _$rootScope_) {
+    beforeEach(mock.module('io.dennis.contextmenu', function($provide) {
+      mockWindow = {
+        innerWidth: 1024,
+        innerHeight: 768
+      };
+      $provide.value('$window', mockWindow);
+    }));
+    beforeEach(inject(function(_$injector_, _$compile_, _$rootScope_, _$timeout_) {
       $injector = _$injector_;
       $compile = _$compile_;
       $rootScope = _$rootScope_;
+      $timeout = _$timeout_;
 
       var configService = $injector.get('$contextmenu');
       configService.set('DEBOUNCE_BROADCAST_TIME', 0);
@@ -79,10 +87,7 @@ describe('io.dennis.contextmenu', function() {
         }
 
       });
-
-
     });
-
 
     it('should be able to register two independant menus', function() {
       var html = '<div contextmenu="some.menu"></div>';
@@ -115,6 +120,43 @@ describe('io.dennis.contextmenu', function() {
         done();
       }, 1);
     });
+
+    describe('', function() {
+
+      var $element;
+
+      beforeEach(function() {
+        var html = '<div contextmenu="some.menu"></div>';
+        var element = angular.element(html);
+        var compiled = $compile(element)($scope);
+        $rootScope.$apply();
+        $element = ae(compiled['0']);
+      });
+
+      it('should open upwards if below the page mid', function() {
+        var belowPageMid = (mockWindow.innerHeight / 2) + 1;
+        $element.controller('contextmenu').open(null, 0, belowPageMid);
+        $timeout.flush();
+        expect($element.hasClass('dropup')).toEqual(true);
+      });
+
+      it('should not stick out of the viewport', function() {
+        var html = '<div contextmenu="some.menu"><div style="width:100px;"></div></div>';
+        var element = angular.element(html);
+        var compiled = $compile(element)($scope);
+        $rootScope.$apply();
+        $element = ae(compiled['0']);
+
+        var setX = mockWindow.innerWidth;
+        $element.controller('contextmenu').open(null, setX, 0);
+        $timeout.flush();
+
+        var elementX = parseFloat($element.css('left'))
+        expect(elementX < setX + mockWindow.innerWidth).toEqual(true);
+      });
+
+    });
+
 
   });
 

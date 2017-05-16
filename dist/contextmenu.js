@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.ngContextmenu = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
@@ -24,7 +24,7 @@ function ContainerCtrl($scope) {
   }
 }
 
-},{}],2:[function(_dereq_,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
@@ -86,11 +86,10 @@ function Contextmenu($window, $rootScope, $contextmenu) {
       contextmenu: '='
     },
     restrict: 'A',
-    controller: ['$scope', '$window', '$rootScope', CotextmenuCtrl],
+    controller: CotextmenuCtrl,
     link: link,
     priority: 100
   };
-
 
   function link(scope, element, attrs, ctrl) {
     scope.contextmenu = $contextmenu.$get();
@@ -99,9 +98,8 @@ function Contextmenu($window, $rootScope, $contextmenu) {
   }
 }
 
-function CotextmenuCtrl($scope, $window, $rootScope) {
-  console.log('init contextmenu ctrl');
-
+CotextmenuCtrl.$inject = ['$scope', '$window', '$rootScope', '$timeout'];
+function CotextmenuCtrl($scope, $window, $rootScope, $timeout) {
   var pub = this;
   var $element;
   $scope.$on('contextmenu.close', close);
@@ -112,10 +110,25 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
 
   function open(item, x, y) {
     broadcastClose();
-    $element.css({top: y, left: x})
-      .toggleClass('dropup', isDropup(y))
+
+    $element
       .toggleClass('open', true)
+      .toggleClass('dropup', isDropup(y))
+      .css('visibility', 'hidden')
       .toggleClass('ng-hide', false);
+
+    $timeout(function() {
+      var width = $element.children().width();
+
+      x = (x + width > $window.innerWidth) ?
+        $window.innerWidth - (width + 5) : x;
+
+      $element.css({
+        top: y + 'px',
+        left: x + 'px',
+        visibility: 'visible'
+      });
+    });
   }
 
   function close() {
@@ -132,7 +145,7 @@ function CotextmenuCtrl($scope, $window, $rootScope) {
   }
 }
 
-},{}],3:[function(_dereq_,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
@@ -204,18 +217,18 @@ function Item() {
 
 }
 
-},{}],4:[function(_dereq_,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu', []);
 
-_dereq_('./service/service');
+require('./service/service');
 
-_dereq_('./directive/contextmenu');
-_dereq_('./directive/container');
-_dereq_('./directive/item');
+require('./directive/contextmenu');
+require('./directive/container');
+require('./directive/item');
 
-},{"./directive/container":1,"./directive/contextmenu":2,"./directive/item":3,"./service/service":5}],5:[function(_dereq_,module,exports){
+},{"./directive/container":1,"./directive/contextmenu":2,"./directive/item":3,"./service/service":5}],5:[function(require,module,exports){
 'use strict';
 
 angular.module('io.dennis.contextmenu')
@@ -352,5 +365,4 @@ function Contextmenu() {
   }
 }
 
-},{}]},{},[4])(4)
-});
+},{}]},{},[4]);
