@@ -34,7 +34,7 @@
   "devDependencies": {
     "browserify": "14.3.0",
     "derequire": "2.0.6",
-    "jasmine-core": "2.6.1",
+    "jasmine-core": "2.6.2",
     "jquery": "3.2.1",
     "karma": "1.7.0",
     "karma-browserify": "5.1.1",
