@@ -36,7 +36,7 @@
     "derequire": "2.0.6",
     "jasmine-core": "2.6.1",
     "jquery": "3.2.1",
-    "karma": "1.7.0",
+    "karma": "1.7.1",
     "karma-browserify": "5.1.1",
     "karma-chrome-launcher": "2.1.1",
     "karma-cli": "1.0.1",
