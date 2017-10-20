@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/ds82/angular-contextmenu",
   "devDependencies": {
-    "browserify": "14.3.0",
+    "browserify": "14.5.0",
     "derequire": "2.0.6",
     "jasmine-core": "2.6.1",
     "jquery": "3.2.1",
